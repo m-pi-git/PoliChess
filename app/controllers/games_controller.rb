@@ -78,5 +78,4 @@ class GamesController < ApplicationController
       :challengee_id
     )
   end
-
 end
