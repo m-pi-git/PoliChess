@@ -12,12 +12,9 @@ user = User.create!(email: 'example@example.com',
 user = User.create!(email: 'john@example.com',
                     password: 'password',
                     password_confirmation: 'password')
-user = User.create!(email: 'jane@example.com',
-                    password: 'password',
-                    password_confirmation: 'password')
 
-10.times do
-  user = User.create!(email: Faker::Internet.email,
-                      password: 'password',
-                      password_confirmation: 'password')
-end
+#10.times do
+# user = User.create!(email: Faker::Internet.email,
+#                     password: 'password',
+#                     password_confirmation: 'password')
+#end
