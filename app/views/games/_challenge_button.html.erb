@@ -4,15 +4,15 @@
       <%= form.hidden_field :challenger_id, value: current_user.id %>
       <%= form.hidden_field :challengee_id, value: user.id %>
       <div class="col-4 p-0">
-        <%= content_tag(:span, "#{user.email}", class:"input-group-text w-100") %>
+        <%= content_tag(:span, "#{user.email}", class: "input-group-text w-100") %>
       </div>
       <div class="col-4 p-0">
         <%= form.select :color,
           options_for_select([['White', 'white'], ['Black', 'black'], ['Random', 'random']],
-          ),{}, {class:"form-select w-100"} %>
+          ),{}, {class: "form-select w-100"} %>
       </div>
       <div class="col-4 p-0">
-        <%= form.submit "Challenge", class:"btn btn-primary w-100" %>
+        <%= form.submit "Challenge", class: "btn btn-primary w-100" %>
       </div>
     </div>
   <% end %>

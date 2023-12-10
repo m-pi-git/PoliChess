@@ -77,5 +77,6 @@ end
   gem "devise"
   gem "faker"
   gem "simple_form"
+gem 'carrierwave'
 gem 'rails-erd'
 
