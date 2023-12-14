@@ -1,8 +1,25 @@
 <h1>Student Chess</h1>
 <% if current_user %>
-  <h3><%= current_user.email %></h3>
+  <h3>You are logged in as <%= current_user.email %></h3>
+  <div style="display: flex; align-items: center;">
+    <%= image_tag current_user.avatar_thumbnail, alt: "User Avatar", class: "avatar" %>
+    <div style="margin-left: 20px; margin-top: 15px;">
+
+      <strong>First Name:</strong>
+      <br><strong>Last Name:</strong>
+      <p><strong>Faculty (short):</strong></p>
+      <strong>Games played:</strong>
+      <br><strong>Games won:</strong>
+      <p><strong>Games lost:</strong></p>
+      <p><strong>Win percentage:</strong></p>
+
+    </div>
+  </div>
   <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+  <br>
+  <%= link_to 'Edit Account', edit_user_registration_path %>
   <%= render partial: "layouts/players" %>
+
 <% else %>
   <%= link_to "Login", new_user_session_path %>
   <br>

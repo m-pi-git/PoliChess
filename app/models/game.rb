@@ -2,7 +2,7 @@ class Game < ApplicationRecord
   has_many :playables, dependent: :destroy
   has_many :users, through: :playables
 
-  enum state: { in_progress: 0, checkmate: 1, draw: 2 }
+  enum state: { accepted: 0, declined: 1, in_progress: 2, checkmate: 3, draw: 4 }
   enum turns: { white: 0, black: 1 }
 
   before_create :set_fen

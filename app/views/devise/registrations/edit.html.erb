@@ -3,33 +3,37 @@
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= f.error_notification %>
 
+  <div class="input-field">
+    <%= f.file_field :avatar %>
+  </div>
+
   <div class="form-inputs">
     <%= f.input :email, required: true, autofocus: true %>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
     <% end %>
-
-    <%= f.input :password,
-                hint: "leave it blank if you don't want to change it",
+    <%= f.input :current_password,
+                required: true,
+                input_html: { autocomplete: "current-password" },
+                placeholder: "Needed to confirm changes"%>
+    <%= f.input :new_password,
                 required: false,
-                input_html: { autocomplete: "new-password" } %>
+                input_html: { autocomplete: "new-password" },
+                placeholder: "Leave it blank if you don't want to change it"%>
     <%= f.input :password_confirmation,
                 required: false,
                 input_html: { autocomplete: "new-password" } %>
-    <%= f.input :current_password,
-                hint: "we need your current password to confirm your changes",
-                required: true,
-                input_html: { autocomplete: "current-password" } %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Update" %>
+    <%= f.button :submit, "Update", style: "background-color: #3498db; color: #fff; border: 1px solid #2980b9; padding: 10px 20px; border-radius: 5px; cursor: pointer;" %>
   </div>
 <% end %>
 
-<h3>Cancel my account</h3>
+<br>
+<h3>Delete my account</h3>
 
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
+<div>Unhappy? <%= button_to "Delete my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
 
 <%= link_to "Back", :back %>
