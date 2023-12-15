@@ -23,7 +23,7 @@ class Game < ApplicationRecord
       '
 [Event "Casual Game"]
 [Site "Localhost"]
-[Date "01/20/23"]
+[Date "12/01/23"]
 [EventDate "?"]
 [Round "?"]
 [Result "1-0"]

@@ -21,6 +21,21 @@ class User < ApplicationRecord
       .where(id: target_user.games)
       .where(state: :in_progress)
   end
+  def games_played
+  end
+
+  def games_won
+
+  end
+
+  def games_lost
+
+  end
+
+  def win_rate
+    total_games = games_played
+    total_games > 0 ? (games_won.to_f / total_games * 100).round(2) : 0
+  end
 
   private
   def add_default_avatar
