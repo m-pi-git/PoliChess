@@ -2,6 +2,7 @@ class ProfilesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_profile, only: %i[ show edit update destroy ]
 
+
   # GET /profiles or /profiles.json
   def index
     @profiles = Profile.all
@@ -66,10 +67,12 @@ class ProfilesController < ApplicationController
     @profile = Profile.find(params[:id])
   end
 
+
   # Only allow a list of trusted parameters through.
   def profile_params
-    params.require(:profile).permit(:index, :name, :surname, :mail)
+    params.require(:profile).permit(:index, :name, :surname, :mail, :avatar)
   end
 
-
 end
+
+

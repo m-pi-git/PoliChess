@@ -1,9 +1,10 @@
 <h1>Edit Your Profile</h1>
 
 <%= simple_form_for(@profile, url: profile_path, html: { method: :put }) do |f| %>
+
   <div class="input-field">
     <strong>Avatar:</strong>
-    <br><%= f.file_field :avatar %>
+    <%= f.file_field :avatar %>
   </div>
   <br>
 
@@ -21,8 +22,16 @@
   </div>
   <div class="form-actions">
     <%= f.button :submit, "Update", style: "background-color: #3498db; color: #fff; border: 1px solid #2980b9; padding: 10px 20px; border-radius: 5px; cursor: pointer;" %>
-      </div>
+    <p></p><%= link_to 'Back', profile_path, style: "background-color: #3498db; text-decoration: none; color: #fff; border: 1px solid #2980b9; padding: 10px 20px; border-radius: 5px; cursor: pointer;" %>
+    <p></p>
+  </div>
 <% end %>
 
-<%= link_to 'Back', profile_path %>
+<br>
+<h3>Delete my account</h3>
+
+<div>Unhappy? <%= button_to "Delete my account", profile_path(@profile), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
+
+
+
 
