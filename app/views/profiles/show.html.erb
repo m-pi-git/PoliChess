@@ -1,0 +1,19 @@
+<h1>Your Profile</h1>
+<div style="display: flex; align-items: center;">
+  <%= image_tag current_user.avatar_thumbnail, alt: "User Avatar", class: "avatar" %>
+  <div style="margin-left: 20px; margin-top: 15px;">
+
+    <p><strong>Student Index:</strong> <%= @profile.student_index %></p>
+    <p><strong>First Name:</strong> <%= @profile.name %></p>
+    <p><strong>Surname:</strong> <%= @profile.surname %></p>
+    <p><strong>Email:</strong> <%= @profile.email %></p>
+
+  </div>
+</div>
+<br>
+
+<% if @profile.user == current_user %>
+  <%= link_to 'Edit Profile', edit_profile_path(@profile), class: 'btn btn-info' %>
+<% end %>
+
+

@@ -1,0 +1,11 @@
+<!-- app/views/messages/received.html.erb -->
+<h1>Received Messages</h1>
+
+<% @received_messages.each do |message| %>
+  <p><strong>Title:</strong> <%= message.title %></p>
+  <p><strong>Body:</strong> <%= message.body %></p>
+  <p><strong>Sender:</strong> <%= message.sender.email %></p>
+  <%= button_to 'Delete', message_path(message), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+
+  <!-- Dodaj inne informacje, które chcesz wyświetlić -->
+<% end %>

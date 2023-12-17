@@ -1,0 +1,28 @@
+<h1>Edit Your Profile</h1>
+
+<%= simple_form_for(@profile, url: profile_path, html: { method: :put }) do |f| %>
+  <div class="input-field">
+    <strong>Avatar:</strong>
+    <br><%= f.file_field :avatar %>
+  </div>
+  <br>
+
+  <p><strong>Student Index:</strong> <%= @profile.student_index %></p>
+  <p><strong>Email:</strong> <%= @profile.email %></p>
+
+  <div class="form-inputs">
+    <%= f.input :name,
+                required: false,
+                placeholder: "Type your first name here"%>
+    <%= f.input :surname,
+                required: false,
+                placeholder: "Type your surname here"%>
+
+  </div>
+  <div class="form-actions">
+    <%= f.button :submit, "Update", style: "background-color: #3498db; color: #fff; border: 1px solid #2980b9; padding: 10px 20px; border-radius: 5px; cursor: pointer;" %>
+      </div>
+<% end %>
+
+<%= link_to 'Back', profile_path %>
+

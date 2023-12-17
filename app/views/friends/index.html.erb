@@ -1,0 +1,41 @@
+<div class="container mt-4">
+  <% if flash[:notice] %>
+    <div class="alert alert-success" role="alert">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+
+  <% if flash[:alert] %>
+    <div class="alert alert-danger" role="alert">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+
+  <h2>Your Friends</h2>
+
+  <% if @friends.any? %>
+    <ul>
+      <% @friends.each do |friend| %>
+        <li>
+          <%= friend.email %>
+          <div class="btn-group">
+          <%= link_to 'Send Message', new_message_path(receiver_email: friend.email), class: 'btn btn-primary' %>
+          <%= link_to 'View Profile', profile_path(friend.profile), class: 'btn btn-info' %>
+          <%= button_to 'Remove Friend', friend_path(friend), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+          </div>
+
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>You have no friends yet.</p>
+  <% end %>
+
+  <h2>Add a Friend</h2>
+  <%= form_tag friends_path, method: :post do %>
+    <%= text_field_tag :email, nil, placeholder: 'Friend\'s email' %>
+    <%= submit_tag 'Add Friend', class: 'btn btn-primary' %>
+  <% end %>
+</div>
+
+
