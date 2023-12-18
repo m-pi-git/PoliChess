@@ -62,8 +62,11 @@ class MessagesController < ApplicationController
     # ... (jeśli będzie potrzebne)
   end
 
+
   def destroy
+    puts "Attempting to destroy message with ID: #{params[:id]}"
     @message.destroy
+
     respond_to do |format|
       format.html { redirect_to messages_url, notice: 'Message was successfully destroyed.' }
       format.json { head :no_content }
@@ -73,9 +76,14 @@ class MessagesController < ApplicationController
   private
 
   def set_message
-    @message = Message.find(params[:id])
+    if params[:id] == "new"
+      # Jeśli próbujesz uzyskać dostęp do wiadomości "new", przekieruj gdzie indziej
+      flash[:alert] = "Invalid message ID."
+      redirect_to messages_path
+    else
+      @message = Message.find(params[:id])
+    end
   end
-
   def message_params
     params.require(:message).permit(:receiver_email, :title, :body)
   end
