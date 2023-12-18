@@ -58,3 +58,21 @@
     overflow-x: hidden;
     white-space: pre-wrap;
 }
+/* Dodaj do pliku CSS (np. styles.css) */
+.message-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ddd; /* Opcjonalne: Dodaj obramowanie dla estetyki */
+  padding: 10px; /* Opcjonalne: Dodaj wypełnienie dla estetyki */
+  margin-bottom: 10px; /* Opcjonalne: Dodaj odstęp między wiadomościami */
+}
+
+.message-summary-details {
+  flex-grow: 1;
+}
+
+.message-summary-buttons {
+  margin-left: 10px; /* Opcjonalne: Dodaj odstęp między przyciskami a treścią */
+}
+

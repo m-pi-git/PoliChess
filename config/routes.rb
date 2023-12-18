@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :games
-  resources :friends, only: %i[index create destroy]
+  resources :friends
   resources :profiles
 
   devise_for :users
@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       get 'sent'
     end
     member do
+      get 'show'
       delete 'destroy'
     end
   end

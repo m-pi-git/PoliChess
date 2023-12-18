@@ -1,14 +1,13 @@
-# app/controllers/messages_controller.rb
 class MessagesController < ApplicationController
   before_action :set_message, only: %i[show edit update destroy]
 
 
-    before_action :authenticate_user!
+  before_action :authenticate_user!
 
-    def index
-      @sent_messages = current_user.sent_messages
-      @received_messages = current_user.received_messages
-    end
+  def index
+    @sent_messages = current_user.sent_messages
+    @received_messages = current_user.received_messages
+  end
   def show
     @message = Message.find_by(id: params[:id])
 
@@ -26,10 +25,10 @@ class MessagesController < ApplicationController
     end
   end
 
-def new
-  @message = Message.new
-  @message.receiver_email = params[:receiver_email]
-  @message.receiver_id = params[:receiver_id]
+  def new
+    @message = Message.new
+    @message.receiver_email = params[:receiver_email]
+    @message.receiver_id = params[:receiver_id]
   end
 
   def create

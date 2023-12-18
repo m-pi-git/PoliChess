@@ -1,11 +1,20 @@
-<!-- app/views/messages/received.html.erb -->
 <h1>Received Messages</h1>
 
 <% @received_messages.each do |message| %>
-  <p><strong>Title:</strong> <%= message.title %></p>
-  <p><strong>Body:</strong> <%= message.body %></p>
-  <p><strong>Sender:</strong> <%= message.sender.email %></p>
-  <%= button_to 'Delete', message_path(message), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+  <div class="message-summary row align-items-center mb-2">
+    <div class="col-3">
+      <p class="mb-0"><strong>Sender:</strong> <%= message.sender.email %></p>
+    </div>
 
+    <div class="col-3 pe-0">
+      <p class="mb-0"><strong>Title:</strong> <%= message.title %></p>
+    </div>
+
+    <div class="col-2 pe-0 d-flex justify-content-end">
+      <%= link_to 'View Message', message_path(message), class: 'btn btn-primary btn-sm me-1' %>
+      <%= button_to 'Delete', message_path(message), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+    </div>
+  </div>
   <!-- Dodaj inne informacje, które chcesz wyświetlić -->
 <% end %>
+<%= link_to 'Back to Messages', messages_path, class: 'btn btn-secondary btn-sm' %>
