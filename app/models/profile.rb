@@ -1,6 +1,7 @@
 class Profile < ApplicationRecord
   belongs_to :user
   has_one_attached :avatar
+
   after_commit :add_default_avatar, on: %i[create update]
 
 
@@ -11,7 +12,6 @@ class Profile < ApplicationRecord
       '/default_profile.jpg'
     end
   end
-
 
   def add_default_avatar
     unless avatar.attached?

@@ -1,7 +1,5 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: %i[show edit update destroy]
-
-
   before_action :authenticate_user!
 
   def index
@@ -10,19 +8,6 @@ class MessagesController < ApplicationController
   end
   def show
     @message = Message.find_by(id: params[:id])
-
-    # Sprawdź, czy wiadomość została znaleziona
-    unless @message
-      flash[:alert] = 'Message not found.'
-      redirect_to messages_path
-      return
-    end
-
-    # Sprawdź, czy użytkownik ma dostęp do tej wiadomości
-    unless @message.sender == current_user || @message.receiver == current_user
-      flash[:alert] = 'You do not have access to this message.'
-      redirect_to messages_path
-    end
   end
 
   def new
@@ -39,14 +24,11 @@ class MessagesController < ApplicationController
     receiver = User.find_by(email: params[:message][:receiver_email])
     @message.receiver = receiver if receiver
 
-    respond_to do |format|
+
       if @message.save
-        format.html { redirect_to @message, notice: 'Message was successfully created.' }
-        format.json { render :show, status: :created, location: @message }
+         redirect_to @message, notice: 'Message was successfully created.'
       else
-        format.html { render :new }
-        format.json { render json: @message.errors, status: :unprocessable_entity }
-      end
+        render :new
     end
   end
   def received
@@ -57,33 +39,17 @@ class MessagesController < ApplicationController
     @sent_messages = current_user.sent_messages
   end
 
-
-  def update
-    # ... (jeśli będzie potrzebne)
-  end
-
-
   def destroy
-    puts "Attempting to destroy message with ID: #{params[:id]}"
     @message.destroy
-
-    respond_to do |format|
-      format.html { redirect_to messages_url, notice: 'Message was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+     redirect_to messages_url, notice: 'Message was successfully destroyed.'
   end
 
   private
 
   def set_message
-    if params[:id] == "new"
-      # Jeśli próbujesz uzyskać dostęp do wiadomości "new", przekieruj gdzie indziej
-      flash[:alert] = "Invalid message ID."
-      redirect_to messages_path
-    else
       @message = Message.find(params[:id])
-    end
   end
+
   def message_params
     params.require(:message).permit(:receiver_email, :title, :body)
   end

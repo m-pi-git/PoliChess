@@ -12,8 +12,6 @@ Rails.application.routes.draw do
     end
     member do
       delete :destroy
-
-
     end
   end
 
