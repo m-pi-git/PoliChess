@@ -1,4 +1,9 @@
-<h1>Your Profile</h1>
+<% if @profile.user == current_user %>
+  <h1>Your Profile</h1>
+<% else %>
+  <h1>Friend's Profile</h1>
+<% end %>
+
 <div style="display: flex; align-items: center;">
   <%= image_tag @profile.avatar_thumbnail, alt: "User Avatar", class: "avatar", 'data-turbolinks': false, 'data-cache-buster': Time.now.to_i %>
   <div style="margin-left: 20px; margin-top: 15px;">

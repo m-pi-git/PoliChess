@@ -1,0 +1,30 @@
+<!-- app/views/ranking/index.html.erb -->
+<% extend RankingHelper %>
+<h1>Ranking</h1>
+
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead class="thead-light">
+    <tr>
+      <th>Miejsce</th>
+      <th>Imię i Nazwisko</th>
+      <th>Wygrane</th>
+      <th>Przegrane</th>
+      <th>Remisy</th>
+      <th>Win Ratio</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @users.each_with_index do |user, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= "#{user.profile.name} #{user.profile.surname}" %></td>
+        <td><%= user.wins %></td>
+        <td><%= user.losses %></td>
+        <td><%= user.draws %></td>
+        <td><%= win_ratio(user) %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

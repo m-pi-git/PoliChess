@@ -15,5 +15,9 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :ranking, only: [:index]
+
+  get '/ranking', to: 'ranking#index'
+
   root 'pages#home'
 end
