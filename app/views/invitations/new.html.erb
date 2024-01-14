@@ -1,5 +1,23 @@
 
+<div class="container mt-4">
+  <% if flash[:notice] %>
+    <div class="alert alert-success" role="alert">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+
+  <% if flash[:alert] %>
+    <div class="alert alert-danger" role="alert">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+
 <h1>New Invitation</h1>
+<% if flash[:notice] %>
+  <div class="alert alert-success" role="alert">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
 
 <%= form_with(model: @invitation, url: invitations_path, method: :post) do |form| %>
   <!-- Dodaj pola formularza dla atrybutów zaproszenia -->
@@ -10,3 +28,5 @@
 
   <%= form.submit 'Send', class: 'btn btn-primary' %>
 <% end %>
+
+</div>

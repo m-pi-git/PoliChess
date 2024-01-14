@@ -1,4 +1,20 @@
-<h1>Received Messages</h1>
+<div class="container mt-4">
+  <% if flash[:notice] %>
+    <div class="alert alert-success" role="alert">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+
+  <% if flash[:alert] %>
+    <div class="alert alert-danger" role="alert">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+
+
+
+
+  <h1>Received Messages</h1>
 
 <% @received_messages.each do |message| %>
   <div class="message-summary row align-items-center mb-2">
@@ -18,3 +34,5 @@
   <!-- Dodaj inne informacje, które chcesz wyświetlić -->
 <% end %>
 <%= link_to 'Back to Messages', messages_path, class: 'btn btn-secondary btn-sm' %>
+
+</div>

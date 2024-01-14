@@ -1,4 +1,16 @@
-<!-- Zakładki na górze strony -->
+<div class="container mt-4">
+  <% if flash[:notice] %>
+    <div class="alert alert-success" role="alert">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+
+  <% if flash[:alert] %>
+    <div class="alert alert-danger" role="alert">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+
 <ul class="nav nav-tabs">
   <li class="nav-item">
     <%= link_to 'Sent', sent_messages_path, class: 'nav-link' %>
@@ -19,3 +31,5 @@
   <h2>Received Messages</h2>
   <%= render partial: 'messages_list', locals: { messages: @received_messages } %>
 <% end %>
+
+</div>

@@ -1,3 +1,16 @@
+<div class="container mt-4">
+  <% if flash[:notice] %>
+    <div class="alert alert-success" role="alert">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+
+  <% if flash[:alert] %>
+    <div class="alert alert-danger" role="alert">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+
 <h1>Received Invitations</h1>
 
 <% if @received_invitations.any? %>
@@ -22,3 +35,5 @@
 <% end %>
 
 <%= link_to 'Back to Invitations', root_path, class: 'btn btn-secondary btn-sm' %>
+
+</div>

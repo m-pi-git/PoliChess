@@ -1,3 +1,16 @@
+<div class="container mt-4">
+  <% if flash[:notice] %>
+    <div class="alert alert-success" role="alert">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+
+  <% if flash[:alert] %>
+    <div class="alert alert-danger" role="alert">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+
 <%= form_with(model: @message, local: true) do |form| %>
   <div class="field">
     <%= form.label :receiver_email %>
@@ -15,3 +28,4 @@
 
   <%= link_to 'Back to Messages', messages_path, class: 'btn btn-secondary btn-sm ms-2' %>
 <% end %>
+</div>

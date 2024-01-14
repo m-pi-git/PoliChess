@@ -1,9 +1,12 @@
+<p></p>
 <% @users.each do |user| %>
   <% games = current_user.game_in_progress_with(user) %>
-  <p>You are playing with <%= user.email %> <%= games.count %> games</p>
+  <% if games.count == 0 %>
+    <p></p>
+  <% else %>
+    <br>You are playing with <%= user.email %> <%= games.count %> games
+  <% end %>
   <% games.each do |game| %>
-    | <%= link_to "Continue Game", game_path(game) %> |
+    <p>| <%= link_to "Continue Game", game_path(game) %> |</p>
   <% end %>
 <% end %>
-
-

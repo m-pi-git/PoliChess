@@ -17,6 +17,7 @@ class InvitationsController < ApplicationController
 
     receiver = User.find_by(email: params[:invitation][:receiver_email])
     @invitation.receiver = receiver if receiver
+    if receiver != current_user
 
     if @invitation.save
       redirect_to root_path, notice: 'Invitation sent successfully.'
@@ -24,6 +25,13 @@ class InvitationsController < ApplicationController
       puts @invitation.errors.full_messages # lub flash[:error] = 'Coś poszło nie tak...'
       render :new
     end
+    elsif  receiver == current_user
+      flash[:alert] = "You cannot challange yourself"
+
+    else
+      flash[:alert] = "Incorrect email"
+    end
+
   end
 
 
@@ -41,7 +49,7 @@ class InvitationsController < ApplicationController
     invitation.destroy
 
     # Tutaj przekieruj do root_path
-    redirect_to root_path, notice: 'Invitation declined.'
+    redirect_to received_invitations_path, notice: 'Invitation declined.'
   end
 
   def received

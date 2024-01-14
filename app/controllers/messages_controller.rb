@@ -26,9 +26,10 @@ class MessagesController < ApplicationController
 
 
       if @message.save
-         redirect_to @message, notice: 'Message was successfully created.'
+         redirect_to new_message_path, notice: 'Message was successfully sent.'
       else
-        render :new
+        flash[:alert] = "Incorrect email"
+        redirect_to new_message_path
     end
   end
   def received
@@ -41,7 +42,7 @@ class MessagesController < ApplicationController
 
   def destroy
     @message.destroy
-     redirect_to messages_url, notice: 'Message was successfully destroyed.'
+     redirect_to messages_path, notice: 'Message was successfully deleted.'
   end
 
   private
