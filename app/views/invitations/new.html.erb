@@ -1,0 +1,12 @@
+
+<h1>New Invitation</h1>
+
+<%= form_with(model: @invitation, url: invitations_path, method: :post) do |form| %>
+  <!-- Dodaj pola formularza dla atrybutów zaproszenia -->
+  <%= form.label :receiver_email %>
+  <%= form.text_field :receiver_email %>
+
+  <!-- Dodaj inne pola formularza zgodnie z Twoimi wymaganiami -->
+
+  <%= form.submit 'Send', class: 'btn btn-primary' %>
+<% end %>

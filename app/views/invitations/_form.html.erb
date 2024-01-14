@@ -1,0 +1,9 @@
+<%= form_with(model: @invitation) do |form| %>
+  <!-- Dodaj pola formularza dla atrybutów zaproszenia -->
+  <%= form.label :receiver_id, 'To:' %>
+  <%= form.select :receiver_id, options_for_select(User.all.map { |u| [u.email, u.id] }), {}, class: 'form-control' %>
+
+  <!-- Dodaj inne pola formularza zgodnie z Twoimi wymaganiami -->
+
+  <%= form.submit "Send Invitation" %>
+<% end %>

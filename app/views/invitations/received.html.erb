@@ -1,0 +1,24 @@
+<h1>Received Invitations</h1>
+
+<% if @received_invitations.any? %>
+  <% @received_invitations.each do |invitation| %>
+    <div class="invitation-summary row align-items-center mb-2">
+      <div class="col-3">
+        <p class="mb-0"><strong>Invited by:</strong> <%= invitation.sender.email %></p>
+      </div>
+
+      <div class="col-3 pe-0">
+        <!-- Dodaj inne informacje, które chcesz wyświetlić, np. treść zaproszenia -->
+      </div>
+
+      <div class="col-2 pe-0 d-flex justify-content-end">
+        <%= link_to 'Accept', accept_invitation_path(invitation), method: :get, class: 'btn btn-primary btn-sm me-1' %>
+        <%= link_to 'Decline', decline_invitation_path(invitation), method: :get, class: 'btn btn-danger btn-sm' %>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <p>No received invitations.</p>
+<% end %>
+
+<%= link_to 'Back to Invitations', root_path, class: 'btn btn-secondary btn-sm' %>

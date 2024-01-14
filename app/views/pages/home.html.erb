@@ -1,11 +1,15 @@
 <h1>Student Chess</h1>
+
 <% if current_user %>
   <h3>You are logged in as <%= current_user.email %></h3>
   <br>
-  <h3>You can choose your opponent below:</h3>
+  <h3>You can manage your invitations below:</h3>
+
+  <%= link_to "Received Invitations", received_invitations_path, class: 'btn btn-primary' %>
+  <%= link_to "New Invitation", new_invitation_path, class: 'btn btn-success' %>
+
 
   <%= render partial: "layouts/players" %>
-
 
 <% else %>
   <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-outline-success' %>

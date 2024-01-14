@@ -22,7 +22,7 @@ class MessagesController < ApplicationController
     @message.sent = true
 
     receiver = User.find_by(email: params[:message][:receiver_email])
-    @message.receiver = receiver if receiver
+      @message.receiver = receiver if receiver
 
 
       if @message.save

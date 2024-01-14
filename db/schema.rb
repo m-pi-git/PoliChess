@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_13_213656) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_14_155139) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -58,6 +58,17 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_13_213656) do
     t.integer "black_player_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "invitations", force: :cascade do |t|
+    t.integer "sender_id"
+    t.integer "receiver_id"
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "receiver_email"
+    t.index ["receiver_id"], name: "index_invitations_on_receiver_id"
+    t.index ["sender_id"], name: "index_invitations_on_sender_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -113,6 +124,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_13_213656) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "friendships", "users"
   add_foreign_key "friendships", "users", column: "friend_id"
+  add_foreign_key "invitations", "users", column: "receiver_id"
+  add_foreign_key "invitations", "users", column: "sender_id"
   add_foreign_key "messages", "users", column: "receiver_id"
   add_foreign_key "messages", "users", column: "sender_id"
   add_foreign_key "playables", "games"

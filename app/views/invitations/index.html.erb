@@ -1,0 +1,11 @@
+<h1>Sent Invitations</h1>
+<% @sent_invitations.each do |invitation| %>
+  <%= "#{invitation.receiver.email} - #{invitation.status}" %>
+<% end %>
+
+<h1>Received Invitations</h1>
+<% @received_invitations.each do |invitation| %>
+  <%= "#{invitation.sender.email  } - #{invitation.status}" %>
+  <%= link_to 'Accept', accept_invitation_path(invitation), method: :post %>
+  <%= link_to 'Decline', decline_invitation_path(invitation), method: :post %>
+<% end %>
