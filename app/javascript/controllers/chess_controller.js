@@ -73,7 +73,7 @@ export default class extends Controller {
             pieceTheme: "/assets/pieces/{piece}.png",
         };
         this.board = Chessboard("board", config);
-        this.gameOvergameOver();
+        this.gameOver();
     }
     removeGreySquares() {
         $("#board .square-55d63").css("background", "");
