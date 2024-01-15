@@ -1,11 +1,10 @@
-<p style="color: green"><%= notice %></p>
+<div class="container mt-4">
 
-<%= render @game %>
+  <%= render @game %>
 
-<div>
-  <%= link_to "Edit this game", edit_game_path(@game) %> |
-  <%= link_to "Back to games", games_path %> |
-  <%= link_to "Back to lobby", root_path %>
+  <div class="mt-4">
+    <%= link_to "Back to Lobby", root_path, class: "btn btn-primary mr-2" %>
 
-  <%= button_to "Destroy this game", @game, method: :delete %>
+    <%= button_to "Stop This Game", @game, method: :delete, class: "btn btn-danger" %>
+  </div>
 </div>
