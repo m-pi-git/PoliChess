@@ -1,12 +1,11 @@
-<p></p>
 <% @users.each do |user| %>
   <% games = current_user.game_in_progress_with(user) %>
-  <% if games.count == 0 %>
-    <p></p>
-  <% else %>
-    <br>You are playing with <%= user.email %> <%= games.count %> games
-  <% end %>
-  <% games.each do |game| %>
-    <p>| <%= link_to "Continue Game", game_path(game) %> |</p>
+  <% if games.any? %>
+    <div class="user-games-info">
+      <p>You are playing <%= games.count %> game<%= 's' if games.count > 1 %> with <%= user.email %> </p>
+      <% games.each_with_index do |game, index| %>
+        <%= link_to "Continue Game#{' ' + (index + 1).to_s if games.count > 1}", game_path(game), class: "btn btn-primary btn-sm mr-2" %>
+      <% end %>
+    </div>
   <% end %>
 <% end %>

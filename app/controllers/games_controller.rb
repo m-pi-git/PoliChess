@@ -53,8 +53,19 @@ class GamesController < ApplicationController
     end
   end
 
-  # DELETE /games/1 or /games/1.json
+
   def destroy
+    challanger = User.find_by(id: @game.white_player_id)
+    challangee = User.find_by(id: @game.black_player_id)
+
+    if current_user == challanger
+      challangee.update(wins: challangee.wins + 1)
+      challanger.update(losses: challanger.losses + 1)
+    else
+      challanger.update(wins: challanger.wins + 1)
+      challangee.update(losses: challanger.losses + 1)
+      end
+
     @game.destroy
 
     respond_to do |format|
@@ -69,7 +80,7 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
+
   def game_params
     params.require(:game).permit(
       :color,
