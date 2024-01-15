@@ -36,7 +36,7 @@ class Game < ApplicationRecord
 '
   end
 
-  # used to rotate board for black player
+  #rotacja planszy dla gracza czarnego
   def orientation(user)
     if white_player_id == user.id
       'white'

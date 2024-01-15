@@ -40,15 +40,12 @@ class InvitationsController < ApplicationController
     @invitation = invitation
     invitation.accepted!
     render 'accepted', locals: { invitation: @invitation }
-    # Tutaj przekieruj do akcji show w kontrolerze InvitationsController
     invitation.destroy
   end
 
   def decline
     invitation = Invitation.find(params[:id])
     invitation.destroy
-
-    # Tutaj przekieruj do root_path
     redirect_to received_invitations_path, notice: 'Invitation declined.'
   end
 
